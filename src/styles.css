@@ -415,7 +415,7 @@ footer {
     justify-content: space-between;
   }
   body {
-    margin: 10px 0 0 10px !important;
+    margin: 10px 0 10px 0 !important;
   }
   .add-post .btn-custom {
     position: absolute;
