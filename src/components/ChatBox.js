@@ -39,13 +39,10 @@ export default function ChatBox({ currentchat, user, socket }) {
 
   useEffect(() => {
     const loadChats = async () => {
-      const res = await axios.post(
-        "https://mern-chat-messenger-post.herokuapp.com/api/messages/getmessage",
-        {
-          from: user?._id,
-          to: currentchat?._id,
-        }
-      );
+      const res = await axios.post("/messages/getmessage", {
+        from: user?._id,
+        to: currentchat?._id,
+      });
       setMessages(res.data);
     };
     loadChats();
@@ -62,14 +59,11 @@ export default function ChatBox({ currentchat, user, socket }) {
   const sendChat = async (e) => {
     e.preventDefault();
 
-    const { data } = await axios.post(
-      "https://mern-chat-messenger-post.herokuapp.com/api/messages/addmessage",
-      {
-        from: user._id,
-        to: currentchat._id,
-        message,
-      }
-    );
+    const { data } = await axios.post("/messages/addmessage", {
+      from: user._id,
+      to: currentchat._id,
+      message,
+    });
     if (message) {
       socket.current.emit("send-msg", {
         from: user._id,
