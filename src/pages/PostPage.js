@@ -38,7 +38,10 @@ export default function PostPage() {
       postId: postUpdateId,
     };
     try {
-      const res = await axios.post("/posts/add-posts", postData);
+      const res = await axios.post(
+        "https://mern-chat-messenger-post.herokuapp.com/api/posts/add-posts",
+        postData
+      );
       if (postUpdateId) {
         const editedPost = posts.map((posts) =>
           posts._id === res.data._id ? res.data : posts
@@ -70,7 +73,10 @@ export default function PostPage() {
   const handleDeltePost = async (postId, postUserId) => {
     console.log(postId, postUserId);
     try {
-      await axios.post("/posts/delete-post", { postId, postUserId });
+      await axios.post(
+        "https://mern-chat-messenger-post.herokuapp.com/api/posts/delete-post",
+        { postId, postUserId }
+      );
       const afterDelete = posts.filter((post) => post._id !== postId);
       setPosts(afterDelete);
     } catch (error) {
@@ -87,7 +93,10 @@ export default function PostPage() {
 
   const handleUpdateLike = async (postId, userId) => {
     try {
-      const res = await axios.post("/posts/like-post", { postId, userId });
+      const res = await axios.post(
+        "https://mern-chat-messenger-post.herokuapp.com/api/posts/like-post",
+        { postId, userId }
+      );
       const likedPost = posts.map((post) =>
         post._id === res.data._id ? res.data : post
       );
@@ -106,7 +115,10 @@ export default function PostPage() {
       text: comment,
     };
     try {
-      const res = await axios.post("/posts/comment-post", commentData);
+      const res = await axios.post(
+        "https://mern-chat-messenger-post.herokuapp.com/api/posts/comment-post",
+        commentData
+      );
       const commentedPost = posts.map((post) =>
         post._id === res.data._id ? res.data : post
       );
@@ -122,7 +134,9 @@ export default function PostPage() {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await axios.get(`/posts/all-posts`);
+        const res = await axios.get(
+          `https://mern-chat-messenger-post.herokuapp.com/api/posts/all-posts`
+        );
         setPosts(res.data);
       } catch (error) {
         console.log(error);

@@ -16,7 +16,9 @@ export default function ChatPage() {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await axios.get(`/users/all/${user?._id}`);
+        const res = await axios.get(
+          `https://mern-chat-messenger-post.herokuapp.com/api/users/all/${user?._id}`
+        );
         setUsers(res.data);
       } catch (error) {
         console.log(error);
@@ -26,7 +28,7 @@ export default function ChatPage() {
   }, [user?._id]);
   useEffect(() => {
     if (user) {
-      socket.current = io("http://localhost:8800");
+      socket.current = io("https://mern-chat-messenger-post.herokuapp.com");
       socket.current.emit("add-user", user._id);
     }
   }, [user]);

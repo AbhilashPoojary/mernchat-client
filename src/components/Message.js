@@ -15,10 +15,13 @@ export default function Message({ own, msg, user, currentchat, emitDelete }) {
   };
   const handleDltDbMsg = async (messageId, senderId) => {
     try {
-      await axios.post("/messages/deletemessage", {
-        messageId,
-        senderId,
-      });
+      await axios.post(
+        "https://mern-chat-messenger-post.herokuapp.com/api/messages/deletemessage",
+        {
+          messageId,
+          senderId,
+        }
+      );
       emitDelete(messageId);
     } catch (error) {
       console.log(error);
