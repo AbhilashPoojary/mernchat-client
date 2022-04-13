@@ -85,7 +85,10 @@ export default function Register({
         profilePicture,
       };
       try {
-        await axios.post("/auth/register", user);
+        await axios.post(
+          "https://mern-chat-messenger-post.herokuapp.com/api/auth/register",
+          user
+        );
         setIsRegister(!isRegister);
         setIsLogin(!isLogin);
         clearFields();
